@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import Item from "./elements/2/item";
+import Element from "./elements/1/element";
 function App() {
+  const [items, newItem] = useState([]);
+
+  function exp(event) {
+    console.log('in app', event);
+    newItem(e =>{ 
+      return[...e, event];
+    })
+    console.log(items);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Element onAddExpense={exp}/>
+      <div id="itemy">
+        {items.map((item, index) => {
+          return(
+            <Item key={index} id='0' B={item.band} A={item.album} Img={item.url}/>
+          )
+        })}
+      </div>
     </div>
   );
 }
